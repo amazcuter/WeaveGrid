@@ -1,0 +1,32 @@
+data/
+bin/
+web/node_modules/
+web/dist/
+artifacts/
+*.db*
+__pycache__/
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.tsbuildinfo
+dist/
+exports/
+backups/
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.log
+*.pem
+*.key
+auth.json
+credentials.json
+.DS_Store
+.idea/
+.vscode/
+.codex/
+# 本地验收可能包含真实创作内容；已跟踪的历史不会被本规则移除。
+TEST_REPORT.md
+# Generated only inside source archives; not part of the public Git history.
+/SOURCE_MANIFEST.sha256

@@ -1,0 +1,20 @@
+* text=auto
+*.sh text eol=lf
+*.go text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# git archive 排除本地材料；这不清除已提交历史。
+/TEST_REPORT.md export-ignore
+/data export-ignore
+/artifacts export-ignore
+/bin export-ignore
+/dist export-ignore
+/exports export-ignore
+/backups export-ignore
+/.env export-ignore
+/web/node_modules export-ignore
+/web/dist export-ignore
