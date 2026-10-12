@@ -6,6 +6,22 @@
 
 **源码可见，非商业使用；商业用途另行授权。** 本项目用于技术交流，不采用 MIT，也不宣称是 OSI 意义的开源。具体许可与例外以 [LICENSE](LICENSE) 为准，商业合作见 [COMMERCIAL.md](COMMERCIAL.md)。
 
+## 实际界面
+
+以下为实际运行中的界面截图（暗色主题），点击图片可查看原图。
+
+### 工作流界面
+
+跨章节核查与修订流程：当前节点、执行状态、修订回路和人工审核入口集中显示。
+
+[![WeaveGrid 实际工作流界面：跨章节核查与修订](docs/images/workflow.png)](docs/images/workflow.png)
+
+### 经纬界面
+
+将伏笔的设定、提醒与回收放在章节双轴上，结合大纲/正文进度、转折章和全书密度查看跨章呼应。
+
+[![WeaveGrid 章节经纬界面：伏笔设定与回收双轴、章节进度及全书密度](docs/images/chapter-weave.png)](docs/images/chapter-weave.png)
+
 ## 能做什么
 
 - 生成章节经纬结构，展示伏笔设定、途中提醒、收回与章节进度。

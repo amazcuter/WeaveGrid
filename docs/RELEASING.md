@@ -18,6 +18,8 @@ make source-export
 
 ## 发布检查表
 
+README 的实际界面截图也在公开文件清单中。图片不接受文本密钥扫描：发布前须人工检查画面和附带元数据，确认没有未经授权的作品内容、凭据或个人信息。只有 `scripts/source_release.py` 中 `REVIEWED_IMAGES` 登记的路径与 SHA-256 内容可以通过；新增或替换截图时先审阅，再登记哈希，其他二进制文件仍拒绝。仍存在于公开 Git 历史中的旧截图哈希应保留，以便历史审查。
+
 - [ ] 项目名 WeaveGrid、署名 amazcutere + DeepSeek + GPT；AI 辅助说明不暗示官方背书。
 - [ ] `LICENSE` 为 PolyForm Noncommercial 1.0.0，`NOTICE` 版权行 amazcutere；不将项目标为 MIT 或 OSI 开源。
 - [ ] 原始经纬生成器权利人已允许随项目发布；后续外来代码仍须核对来源及商业再许可权限。

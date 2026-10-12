@@ -19,6 +19,16 @@ import tarfile
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "scripts/public-files.txt"
 MAX_BYTES = 2 * 1024 * 1024
+# Binary screenshots require visual review and exact-byte approval. Retain old
+# approved hashes while their images remain reachable in public Git history.
+REVIEWED_IMAGES = {
+    "docs/images/workflow.png": {
+        "19eb2a9c9767aeb5efbd8c5721dca593062e0be67e8fba7c48a8cdb9d1c25616",
+    },
+    "docs/images/chapter-weave.png": {
+        "c148f5220670fa1b38090ba1fb37890c93e444a4acf0139f6b9ab37ad2f6c9c2",
+    },
+}
 PRIVATE_PARTS = {
     ".git", ".codex", ".idea", ".vscode", "data", "artifacts", "bin",
     "dist", "node_modules", "exports", "backups", "__pycache__",
@@ -74,9 +84,13 @@ def read_manifest():
     return sorted(names)
 
 
-def findings(label, data):
+def findings(label, data, *, name=None):
     if len(data) > MAX_BYTES:
         return [f"{label}: oversized-file（请单独人工检查）"]
+    if (name or label) in REVIEWED_IMAGES:
+        if hashlib.sha256(data).hexdigest() in REVIEWED_IMAGES[name or label]:
+            return []
+        return [f"{label}: unreviewed-image（截图内容变化，需人工检查后登记哈希）"]
     try:
         text = data.decode("utf-8")
     except UnicodeDecodeError:
@@ -126,7 +140,7 @@ def audit_git(names):
             issues.append(f"tracked:{name}: symlink")
         elif path.is_file() and not any(p.is_symlink() for p in path.parents):
             if path.stat().st_size <= MAX_BYTES:
-                issues.extend(findings(f"tracked:{name}", path.read_bytes()))
+                issues.extend(findings(f"tracked:{name}", path.read_bytes(), name=name))
             else:
                 issues.append(f"tracked:{name}: oversized-file")
     objects = git("rev-list", "--objects", "--all").decode("utf-8").splitlines()
@@ -141,7 +155,7 @@ def audit_git(names):
         if int(git("cat-file", "-s", oid)) > MAX_BYTES:
             issues.append(f"{label}: oversized-file")
         else:
-            issues.extend(findings(label, git("cat-file", "blob", oid)))
+            issues.extend(findings(label, git("cat-file", "blob", oid), name=name))
     return issues
 
 

@@ -21,6 +21,8 @@ cmd/smoke-server/main.go
 cmd/weavegrid/main.go
 docs/RELEASING.md
 docs/USER_GUIDE.md
+docs/images/chapter-weave.png
+docs/images/workflow.png
 go.mod
 go.sum
 internal/workbench/api.go
